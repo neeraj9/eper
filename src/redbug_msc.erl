@@ -45,7 +45,7 @@ compile_acts(As) ->
   [ac_fun(A)|| A <- As].
 
 ac_fun("stack") -> {message,{process_dump}};
-ac_fun("return")-> {exception_trace};   %{return_trace}; %backward compatible?
+ac_fun("return")-> {exception_trace};
 ac_fun(X)       -> exit({unknown_action,X}).
 
 compile_guards(Gs,Vars) ->

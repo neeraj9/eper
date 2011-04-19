@@ -368,7 +368,7 @@ chk_rtp(X)                             -> exit({bad_rtp,X}).
 ms(MS) -> foldl(fun msf/2, [{'_',[],[]}], MS).
 
 msf(stack,[{Head,Cond,Body}]) -> [{Head,Cond,[{message,{process_dump}}|Body]}];
-msf(return,[{Head,Cond,Body}])-> [{Head,Cond,[{return_trace}|Body]}];
+msf(return,[{Head,Cond,Body}])-> [{Head,Cond,[{exception_trace}|Body]}];
 msf(Ari, [{_,Cond,Body}]) when is_integer(Ari)-> [{mk_head(Ari),Cond,Body}];
 msf({Head,Cond},[{_,_,Body}]) when is_tuple(Head)->[{Head,slist(Cond),Body}];
 msf(Head, [{_,Cond,Body}]) when is_tuple(Head)-> [{Head,Cond,Body}];
