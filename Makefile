@@ -1,7 +1,7 @@
 all: deps compile
 
 compile:
-	@./rebar compile
+	@./rebar compile escriptize
 
 deps:
 	@./rebar get-deps
