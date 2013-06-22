@@ -15,17 +15,17 @@ encrypt(Data) -> encrypt(phrase(),Data).
 encrypt(Phrase,Data) ->
   assert_crypto(),
   {Key,Ivec} = make_key(Phrase),
-  crypto:des_cbc_encrypt(Key,Ivec,pad(Data)).
+  crypto:block_encrypt(des_cbc,Key,Ivec,pad(Data)).
 
 decrypt(Data) -> decrypt(phrase(),Data).
 
 decrypt(Phrase,Data) ->
   assert_crypto(),
   {Key,Ivec} = make_key(Phrase),
-  unpad(crypto:des_cbc_decrypt(Key,Ivec,Data)).
+  unpad(crypto:block_decrypt(des_cbc,Key,Ivec,Data)).
 
 make_key(Phrase) ->
-  <<Key:8/binary,Ivec:8/binary>> = crypto:md5(Phrase),
+  <<Key:8/binary,Ivec:8/binary>> = crypto:hash(md5,Phrase),
   {Key,Ivec}.
 
 pad(Term) ->
